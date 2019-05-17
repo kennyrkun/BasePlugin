@@ -6,8 +6,8 @@ import java.util.UUID;
 /**
  * Represents the location of a Chunk on the server
  */
-public class ChunkLocation implements Serializable {
-	
+public class ChunkLocation implements Serializable
+{
 	private static final long serialVersionUID = 1L;
 	
 	private UUID worldUID;
@@ -19,14 +19,16 @@ public class ChunkLocation implements Serializable {
 	 * @param x The x coordinate
 	 * @param z The z coordinate
 	 */
-	public ChunkLocation(UUID worldUID, int x, int z){
+	public ChunkLocation(UUID worldUID, int x, int z)
+	{
 		this.worldUID = worldUID;
 		this.x = x;
 		this.z = z;
 	}
 	
 	@Override
-	public int hashCode(){
+	public int hashCode()
+	{
 		int result = 19;
 		
 		result = 37 * result + this.x;
@@ -36,15 +38,14 @@ public class ChunkLocation implements Serializable {
 	}
 	
 	@Override
-	public boolean equals(Object compare){
-		if (this == compare){
+	public boolean equals(Object compare)
+	{
+		if (this == compare)
 			return true;
-		}
-		
-		if (compare instanceof ChunkLocation){
+
+		if (compare instanceof ChunkLocation)
 			return false;
-		}
-		
+
 		ChunkLocation location = (ChunkLocation) compare;
 		
 		return (this.worldUID.equals(location.worldUID) && this.x == location.x && this.z == location.z);
@@ -55,7 +56,8 @@ public class ChunkLocation implements Serializable {
 	 * 
 	 * @return The UUID
 	 */
-	public UUID getWorldUID(){
+	public UUID getWorldUID()
+	{
 		return this.worldUID;
 	}
 	
@@ -64,7 +66,8 @@ public class ChunkLocation implements Serializable {
 	 * 
 	 * @return The coordinate.
 	 */
-	public int getX(){
+	public int getX()
+	{
 		return this.x;
 	}
 	
@@ -73,8 +76,8 @@ public class ChunkLocation implements Serializable {
 	 * 
 	 * @return The coordinate.
 	 */
-	public int getZ(){
+	public int getZ()
+	{
 		return this.z;
 	}
-	
 }

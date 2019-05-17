@@ -7,12 +7,13 @@ import org.bukkit.command.CommandSender;
  * 
  * @param <T> The type of object being conversed with
  */
-public abstract class Node<C extends Conversation<? extends CommandSender>, T extends CommandSender> {
-	
+public abstract class Node<C extends Conversation<? extends CommandSender>, T extends CommandSender>
+{
 	private C convo;
 	private boolean recurring;
 	
-	protected Node(C convo){
+	protected Node(C convo)
+	{
 		this.convo = convo;
 		this.recurring = true;
 	}
@@ -22,7 +23,8 @@ public abstract class Node<C extends Conversation<? extends CommandSender>, T ex
 	 * 
 	 * @return The conversation
 	 */
-	protected C getConversation(){
+	protected C getConversation()
+	{
 		return this.convo;
 	}
 	
@@ -31,7 +33,8 @@ public abstract class Node<C extends Conversation<? extends CommandSender>, T ex
 	 * 
 	 * @return The flag
 	 */
-	public boolean isRecurring(){
+	public boolean isRecurring()
+	{
 		return this.recurring;
 	}
 	
@@ -40,7 +43,8 @@ public abstract class Node<C extends Conversation<? extends CommandSender>, T ex
 	 * 
 	 * @param recurring The flag
 	 */
-	protected void setRecurring(boolean recurring){
+	protected void setRecurring(boolean recurring)
+	{
 		this.recurring = recurring;
 	}
 	
@@ -62,5 +66,4 @@ public abstract class Node<C extends Conversation<? extends CommandSender>, T ex
 	 * @return The next Node in the conversation or null to end here.
 	 */
 	public abstract Node<C, T> processInput(String input);
-	
 }

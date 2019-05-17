@@ -5,13 +5,12 @@ package uk.co.jacekk.bukkit.baseplugin.command.args;
  * 
  * @author Jacek Kuzemczak
  */
-public abstract class ArgumentProcessor {
-	
+public abstract class ArgumentProcessor
+{
 	public String[] args;
 	
 	/**
 	 * Process the raw array of aruments, this is called automatically.
 	 */
 	public abstract void process();
-	
 }

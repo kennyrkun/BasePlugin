@@ -16,8 +16,8 @@ import java.util.Set;
  * 
  * @author Jacek Kuzemczak
  */
-public class KeyValueArgumentProcessor extends ArgumentProcessor {
-	
+public class KeyValueArgumentProcessor extends ArgumentProcessor
+{
 	private String separator;
 	private LinkedHashMap<String, String> values;
 	private LinkedList<String> leftover;
@@ -26,7 +26,8 @@ public class KeyValueArgumentProcessor extends ArgumentProcessor {
 	 * @param args			The command arguments.
 	 * @param separator		The string used to separate the keys and values.
 	 */
-	public KeyValueArgumentProcessor(String[] args, String separator){
+	public KeyValueArgumentProcessor(String[] args, String separator)
+	{
 		this.args = args;
 		this.separator = separator;
 		this.values = new LinkedHashMap<String, String>();
@@ -35,15 +36,16 @@ public class KeyValueArgumentProcessor extends ArgumentProcessor {
 		this.process();
 	}
 	
-	public void process(){
-		for (String argument : this.args){
+	public void process()
+	{
+		for (String argument : this.args)
+		{
 			String[] parts = argument.split(this.separator, 2);
 			
-			if (parts.length == 2){
+			if (parts.length == 2)
 				this.values.put(parts[0].toLowerCase(), parts[1]);
-			}else{
+			else
 				this.leftover.add(argument);
-			}
 		}
 	}
 	
@@ -53,7 +55,8 @@ public class KeyValueArgumentProcessor extends ArgumentProcessor {
 	 * @param key	The key of the entry.
 	 * @return		True if the key was found, false if not.
 	 */
-	public boolean contains(String key){
+	public boolean contains(String key)
+	{
 		return this.values.containsKey(key.toLowerCase());
 	}
 	
@@ -63,7 +66,8 @@ public class KeyValueArgumentProcessor extends ArgumentProcessor {
 	 * @param key	The key.
 	 * @return		the value.
 	 */
-	public String get(String key){
+	public String get(String key)
+	{
 		return this.values.get(key.toLowerCase());
 	}
 	
@@ -72,7 +76,8 @@ public class KeyValueArgumentProcessor extends ArgumentProcessor {
 	 * 
 	 * @return	The values.
 	 */
-	public Set<Entry<String, String>> getAll(){
+	public Set<Entry<String, String>> getAll()
+	{
 		return this.values.entrySet();
 	}
 	
@@ -81,8 +86,8 @@ public class KeyValueArgumentProcessor extends ArgumentProcessor {
 	 * 
 	 * @return	The arguments.
 	 */
-	public LinkedList<String> getLeftOver(){
+	public LinkedList<String> getLeftOver()
+	{
 		return this.leftover;
 	}
-	
 }

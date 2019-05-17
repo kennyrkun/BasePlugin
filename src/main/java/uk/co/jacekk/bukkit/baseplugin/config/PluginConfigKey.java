@@ -5,13 +5,14 @@ package uk.co.jacekk.bukkit.baseplugin.config;
  * 
  * @author Jacek Kuzemczak
  */
-public class PluginConfigKey {
-	
+public class PluginConfigKey
+{
 	private String key;
 	private Object defaultValue;
 	private boolean dynamic;
 	
-	public PluginConfigKey(String key, Object defaultValue, boolean dynamic){
+	public PluginConfigKey(String key, Object defaultValue, boolean dynamic)
+	{
 		this.key = key;
 		this.defaultValue = defaultValue;
 		this.dynamic = dynamic;
@@ -26,7 +27,8 @@ public class PluginConfigKey {
 	 * 
 	 * @return	The key.
 	 */
-	public String getKey(){
+	public String getKey()
+	{
 		return this.key;
 	}
 	
@@ -35,7 +37,8 @@ public class PluginConfigKey {
 	 * 
 	 * @return The value.
 	 */
-	public Object getDefault(){
+	public Object getDefault()
+	{
 		return this.defaultValue;
 	}
 	
@@ -44,8 +47,8 @@ public class PluginConfigKey {
 	 * 
 	 * @return	True if the key is dynamic.
 	 */
-	public boolean isDynamic(){
+	public boolean isDynamic()
+	{
 		return this.dynamic;
 	}
-	
 }

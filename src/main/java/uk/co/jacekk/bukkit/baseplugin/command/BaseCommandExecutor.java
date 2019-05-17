@@ -10,13 +10,12 @@ import uk.co.jacekk.bukkit.baseplugin.BaseObject;
  *
  * @param <Type>	The plugin that this executor belongs to.
  */
-public abstract class BaseCommandExecutor<Type> extends BaseObject<Type> {
-	
+public abstract class BaseCommandExecutor<Type> extends BaseObject<Type>
+{
 	/**
 	 * @param plugin	The plugin that this executor belongs to.
 	 */
 	public BaseCommandExecutor(Type plugin){
 		super(plugin);
 	}
-	
 }

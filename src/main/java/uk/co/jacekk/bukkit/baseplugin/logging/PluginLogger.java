@@ -10,15 +10,16 @@ import org.bukkit.plugin.PluginDescriptionFile;
  * 
  * @author Jacek Kuzemczak
  */
-public class PluginLogger {
-	
+public class PluginLogger
+{
 	private Plugin plugin;
 	private Logger logger;
 	
 	/**
 	 * @param plugin	The plugin that this logger will format it's messages for.
 	 */
-	public PluginLogger(Plugin plugin){
+	public PluginLogger(Plugin plugin)
+	{
 		this.plugin = plugin;
 		this.logger = Logger.getLogger("Minecraft");
 	}
@@ -29,7 +30,8 @@ public class PluginLogger {
 	 * @param msg	The message to be formatted.
 	 * @return		The formatted message.
 	 */
-	private String buildString(String msg){
+	private String buildString(String msg)
+	{
 		PluginDescriptionFile pdf = plugin.getDescription();
 		return "[" + pdf.getName() + " v" + pdf.getVersion()+ "]: " + msg;
 	}
@@ -39,7 +41,8 @@ public class PluginLogger {
 	 * 
 	 * @param msg The message to be logged.
 	 */
-	public void info(String msg){
+	public void info(String msg)
+	{
 		this.logger.info(this.buildString(msg));
 	}
 	
@@ -48,7 +51,8 @@ public class PluginLogger {
 	 * 
 	 * @param msg The message to be logged.
 	 */
-	public void warn(String msg){
+	public void warn(String msg)
+	{
 		this.logger.warning(this.buildString(msg));
 	}
 	
@@ -57,8 +61,8 @@ public class PluginLogger {
 	 * 
 	 * @param msg The message to be logged.
 	 */
-	public void fatal(String msg){
+	public void fatal(String msg)
+	{
 		this.logger.severe(this.buildString(msg));
 	}
-	
 }

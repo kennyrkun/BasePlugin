@@ -15,8 +15,8 @@ import java.util.List;
  * 
  * @author Jacek Kuzemczak
  */
-public class ListStore {
-	
+public class ListStore
+{
 	private File storageFile;
 	
 	private ArrayList<String> data;
@@ -26,42 +26,49 @@ public class ListStore {
 	 * @param storageFile		The file where the list will be stored.
 	 * @param caseSensitive		If set to false all comparison will be done in lower-case.
 	 */
-	public ListStore(File storageFile, boolean caseSensitive){
+	public ListStore(File storageFile, boolean caseSensitive)
+	{
 		this.storageFile = storageFile;
 		
 		this.data = new ArrayList<String>();
 		this.caseSensitive = caseSensitive;
 		
-		if (this.storageFile.exists() == false){
-			try{
+		if (!this.storageFile.exists())
+			try
+			{
 				this.storageFile.createNewFile();
-			}catch (Exception e){
+			}
+			catch (Exception e)
+			{
 				e.printStackTrace();
 			}
-		}
 	}
 	
 	/**
 	 * Loads the current lust entries from the file.
 	 */
-	public void load(){
-		try{
+	public void load()
+	{
+		try
+		{
 			DataInputStream input = new DataInputStream(new FileInputStream(this.storageFile));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 			
 			String line, entry;
 			
-			while ((line = reader.readLine()) != null){
+			while ((line = reader.readLine()) != null)
+			{
 				entry = (this.caseSensitive) ? line : line.toLowerCase();
 				
-				if (this.data.contains(entry) == false){
+				if (this.data.contains(entry) == false)
 					this.data.add(entry);
-				}
 			}
 			
 			reader.close();
 			input.close();
-		}catch (Exception e){
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -69,19 +76,24 @@ public class ListStore {
 	/**
 	 * Writes the list entries to the file.
 	 */
-	public void save(){
-		try{
+	public void save()
+	{
+		try
+		{
 			FileWriter stream = new FileWriter(this.storageFile);
 			BufferedWriter out = new BufferedWriter(stream);
 			
-			for (String entry : this.data){
+			for (String entry : this.data)
+			{
 				out.write(entry);
 				out.newLine();
 			}
 			
 			out.close();
 			stream.close();
-		}catch (Exception e){
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -92,7 +104,8 @@ public class ListStore {
 	 * @param entry		The value to check for.
 	 * @return			True of the key exists false if not.
 	 */
-	public boolean contains(String entry){
+	public boolean contains(String entry)
+	{
 		return this.data.contains((this.caseSensitive) ? entry : entry.toLowerCase());
 	}
 	
@@ -101,7 +114,8 @@ public class ListStore {
 	 * 
 	 * @return	The entries.
 	 */
-	public List<String> getAll(){
+	public List<String> getAll()
+	{
 		return this.data;
 	}
 	
@@ -110,7 +124,8 @@ public class ListStore {
 	 * 
 	 * @return	The keys.
 	 */
-	public Integer size(){
+	public Integer size()
+	{
 		return this.data.size();
 	}
 	
@@ -119,15 +134,17 @@ public class ListStore {
 	 * 
 	 * @param entry		The value.
 	 */
-	public void add(String entry){
-		if (!this.caseSensitive){
+	public void add(String entry)
+	{
+		if (!this.caseSensitive)
 			entry = entry.toLowerCase();
-		}
-		
-		if (!this.data.contains(entry)){
+
+		if (!this.data.contains(entry))
+		{
 			this.data.add(entry);
 			
-			try{
+			try
+			{
 				FileWriter stream = new FileWriter(this.storageFile, true);
 				BufferedWriter out = new BufferedWriter(stream);
 				
@@ -136,7 +153,9 @@ public class ListStore {
 				
 				out.close();
 				stream.close();
-			}catch (Exception e){
+			}
+			catch (Exception e)
+			{
 				e.printStackTrace();
 			}
 		}
@@ -147,7 +166,8 @@ public class ListStore {
 	 * 
 	 * @param entry		The value.
 	 */
-	public void remove(String entry){
+	public void remove(String entry)
+	{
 		this.data.remove((this.caseSensitive) ? entry : entry.toLowerCase());
 		this.save();
 	}
@@ -155,9 +175,9 @@ public class ListStore {
 	/**
 	 * Removes all entries from the list.
 	 */
-	public void removeAll(){
+	public void removeAll()
+	{
 		this.data.clear();
 		this.save();
 	}
-	
 }

@@ -19,15 +19,16 @@ import uk.co.jacekk.bukkit.baseplugin.util.StringUtils;
  * 
  * @author Jacek Kuzemczak
  */
-public class BukkitDevUpdateChecker extends UpdateChecker {
-	
+public class BukkitDevUpdateChecker extends UpdateChecker
+{
 	/**
 	 * Creates a new update checker for this plugin.
 	 * 
 	 * @param plugin	The plugin to check for updates for.
 	 * @param slug		The URL slug of the BukkitDev project page.
 	 */
-	public BukkitDevUpdateChecker(Plugin plugin, String slug){
+	public BukkitDevUpdateChecker(Plugin plugin, String slug)
+	{
 		super(plugin, "http://dev.bukkit.org/bukkit-plugins/" + slug + "/files.rss");
 	}
 	
@@ -36,8 +37,10 @@ public class BukkitDevUpdateChecker extends UpdateChecker {
 	 * null if this method has not been called yet.
 	 */
 	@Override
-	public boolean updateNeeded(){
-		try{
+	public boolean updateNeeded()
+	{
+		try
+		{
 			InputStream input = this.filesFeed.openConnection().getInputStream();
 			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input);
 			
@@ -54,10 +57,11 @@ public class BukkitDevUpdateChecker extends UpdateChecker {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 			String line;
 			
-			while ((line = reader.readLine()) != null){
-				if (line.trim().startsWith("<li class=\"user-action user-action-download\">")){
+			while ((line = reader.readLine()) != null)
+			{
+				if (line.trim().startsWith("<li class=\"user-action user-action-download\">"))
+				{
 					this.jarLink = line.substring(line.indexOf("href=\"") + 6, line.lastIndexOf("\""));
-					
 					break;
 				}
 			}
@@ -65,14 +69,14 @@ public class BukkitDevUpdateChecker extends UpdateChecker {
 			reader.close();
 			input.close();
 			
-			if (StringUtils.versionCompare(plugin.getDescription().getVersion(), this.version) == -1){
+			if (StringUtils.versionCompare(plugin.getDescription().getVersion(), this.version) == -1)
 				return true;
-			}
-		}catch (Exception e){
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 		
 		return false;
 	}
-	
 }

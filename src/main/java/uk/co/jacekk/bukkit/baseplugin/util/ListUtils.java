@@ -9,8 +9,8 @@ import java.util.Random;
  * 
  * @author Jacek Kuzemczak
  */
-public class ListUtils {
-	
+public class ListUtils
+{
 	private static final Random rand = new Random();
 	
 	/**
@@ -20,16 +20,17 @@ public class ListUtils {
 	 * @param values	The values.
 	 * @return			A string of elements with the separator between them.
 	 */
-	public static String implode(String sep, List<?> values){
-		if (values.size() == 0){
+	public static String implode(String sep, List<?> values)
+	{
+		if (values.size() == 0)
 			return "";
-		}
-		
+
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append(values.get(0).toString());
 		
-		for (int i = 1; i < values.size(); ++i){
+		for (int i = 1; i < values.size(); ++i)
+		{
 			builder.append(sep);
 			builder.append(values.get(i).toString());
 		}
@@ -44,7 +45,8 @@ public class ListUtils {
 	 * @param <T>		The object being conversed with
 	 * @return			A random entry from the list.
 	 */
-	public static <T> T getRandom(List<T> items){
+	public static <T> T getRandom(List<T> items)
+	{
 		return items.get(rand.nextInt(items.size()));
 	}
 	
@@ -54,13 +56,13 @@ public class ListUtils {
 	 * @param numbers The list
 	 * @return The sum.
 	 */
-	public static int sumInts(Collection<Integer> numbers){
+	public static int sumInts(Collection<Integer> numbers)
+	{
 		int result = 0;
 		
-		for (Integer number : numbers){
+		for (Integer number : numbers)
 			result += number;
-		}
-		
+
 		return result;
 	}
 	
@@ -70,13 +72,13 @@ public class ListUtils {
 	 * @param numbers The list
 	 * @return The sum.
 	 */
-	public static long sumLongs(Collection<Long> numbers){
+	public static long sumLongs(Collection<Long> numbers)
+	{
 		long result = 0;
 		
-		for (Long number : numbers){
+		for (Long number : numbers)
 			result += number;
-		}
-		
+
 		return result;
 	}
 	
@@ -86,13 +88,13 @@ public class ListUtils {
 	 * @param numbers The list
 	 * @return The sum.
 	 */
-	public static double sumDoubles(Collection<Double> numbers){
+	public static double sumDoubles(Collection<Double> numbers)
+	{
 		double result = 0;
 		
-		for (Double number : numbers){
+		for (Double number : numbers)
 			result += number;
-		}
-		
+
 		return result;
 	}
 	
@@ -102,14 +104,13 @@ public class ListUtils {
 	 * @param numbers The list
 	 * @return The sum.
 	 */
-	public static float sumFloats(Collection<Float> numbers){
+	public static float sumFloats(Collection<Float> numbers)
+	{
 		float result = 0;
 		
-		for (Float number : numbers){
+		for (Float number : numbers)
 			result += number;
-		}
-		
+
 		return result;
 	}
-	
 }

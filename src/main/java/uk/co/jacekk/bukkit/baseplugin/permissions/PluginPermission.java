@@ -13,13 +13,14 @@ import org.bukkit.permissions.PermissionDefault;
  * 
  * @author Jacek Kuzemczak
  */
-public class PluginPermission {
-	
+public class PluginPermission
+{
 	protected String node;
 	protected PermissionDefault defaultValue;
 	protected String description;
 	
-	public PluginPermission(String node, PermissionDefault defaultValue, String description){
+	public PluginPermission(String node, PermissionDefault defaultValue, String description)
+	{
 		this.node = node;
 		this.defaultValue = defaultValue;
 		this.description = description;
@@ -30,7 +31,8 @@ public class PluginPermission {
 	 * 
 	 * @return	The node.
 	 */
-	public String getNode(){
+	public String getNode()
+	{
 		return this.node;
 	}
 	
@@ -39,7 +41,8 @@ public class PluginPermission {
 	 * 
 	 * @return The default.
 	 */
-	public PermissionDefault getDefault(){
+	public PermissionDefault getDefault()
+	{
 		return this.defaultValue;
 	}
 	
@@ -48,7 +51,8 @@ public class PluginPermission {
 	 * 
 	 * @return The description.
 	 */
-	public String getDescription(){
+	public String getDescription()
+	{
 		return this.description;
 	}
 	
@@ -57,15 +61,14 @@ public class PluginPermission {
 	 * 
 	 * @return The list of players.
 	 */
-	public List<Player> getPlayersWith(){
+	public List<Player> getPlayersWith()
+	{
 		ArrayList<Player> players = new ArrayList<Player>();
 		
-		for (Player player : Bukkit.getServer().getOnlinePlayers()){
-			if (this.has(player)){
+		for (Player player : Bukkit.getServer().getOnlinePlayers())
+			if (this.has(player))
 				players.add(player);
-			}
-		}
-		
+
 		return players;
 	}
 	
@@ -75,8 +78,8 @@ public class PluginPermission {
 	 * @param sender	The sender to be checked, often a {@link Player}
 	 * @return			True if the sender has this permission false if not.
 	 */
-	public boolean has(CommandSender sender){
+	public boolean has(CommandSender sender)
+	{
 		return sender.hasPermission(this.node);
 	}
-	
 }

@@ -9,13 +9,13 @@ import uk.co.jacekk.bukkit.baseplugin.BaseObject;
  *
  * @param <Type>	The plugin that this task belongs to.
  */
-public abstract class BaseTask<Type> extends BaseObject<Type> implements Runnable {
-	
+public abstract class BaseTask<Type> extends BaseObject<Type> implements Runnable
+{
 	/**
 	 * @param plugin 	The plugin that this task belongs to.
 	 */
-	public BaseTask(Type plugin){
+	public BaseTask(Type plugin)
+	{
 		super(plugin);
 	}
-	
 }

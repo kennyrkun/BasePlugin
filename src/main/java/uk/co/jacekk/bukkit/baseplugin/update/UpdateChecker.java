@@ -11,8 +11,8 @@ import org.bukkit.plugin.Plugin;
  * 
  * @author Jacek Kuzemczak
  */
-public abstract class UpdateChecker {
-	
+public abstract class UpdateChecker
+{
 	protected Plugin plugin;
 	protected URL filesFeed;
 	
@@ -24,12 +24,16 @@ public abstract class UpdateChecker {
 	 * @param plugin	The plugin to be checked.
 	 * @param url		The URL to fetch data from.
 	 */
-	protected UpdateChecker(Plugin plugin, String url){
+	protected UpdateChecker(Plugin plugin, String url)
+	{
 		this.plugin = plugin;
 		
-		try{
+		try
+		{
 			this.filesFeed = new URL(url);
-		}catch (MalformedURLException e){
+		}
+		catch (MalformedURLException e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -39,7 +43,8 @@ public abstract class UpdateChecker {
 	 * 
 	 * @return	The version number.
 	 */
-	public String getVersion(){
+	public String getVersion()
+	{
 		return this.version;
 	}
 	
@@ -48,7 +53,8 @@ public abstract class UpdateChecker {
 	 * 
 	 * @return	The URL.
 	 */
-	public String getLink(){
+	public String getLink()
+	{
 		return this.link;
 	}
 	
@@ -57,7 +63,8 @@ public abstract class UpdateChecker {
 	 * 
 	 * @return The URL.
 	 */
-	public String getJarLink(){
+	public String getJarLink()
+	{
 		return this.jarLink;
 	}
 	
@@ -67,5 +74,4 @@ public abstract class UpdateChecker {
 	 * @return	True if an update is needed, false if not.
 	 */
 	public abstract boolean updateNeeded();
-	
 }

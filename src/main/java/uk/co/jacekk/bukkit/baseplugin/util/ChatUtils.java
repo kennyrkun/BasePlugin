@@ -10,20 +10,19 @@ import org.bukkit.ChatColor;
  * 
  * @author Jacek Kuzemczak
  */
-public class ChatUtils {
-	
+public class ChatUtils
+{
 	private static final LinkedHashMap<String, ChatColor> formattingCodeMap;
 	
-	static{
+	static
+	{
 		formattingCodeMap = new LinkedHashMap<String, ChatColor>();
 		
-		for (ChatColor colour : ChatColor.values()){
-			if (colour.isColor()){
+		for (ChatColor colour : ChatColor.values())
+			if (colour.isColor())
 				formattingCodeMap.put("&" + colour.getChar(), colour);
-			}else{
+			else
 				formattingCodeMap.put("#" + colour.name().substring(0, 1).toLowerCase(), colour);
-			}
-		}
 	}
 	
 	/**
@@ -34,7 +33,8 @@ public class ChatUtils {
 	 *
 	 * @return	The map.
 	 */
-	public static LinkedHashMap<String, ChatColor> getFormattingCodeMap(){
+	public static LinkedHashMap<String, ChatColor> getFormattingCodeMap()
+	{
 		return formattingCodeMap;
 	}
 	
@@ -44,12 +44,11 @@ public class ChatUtils {
 	 * @param message	The message to parse.
 	 * @return			the message with colour codes replaced.
 	 */
-	public static String parseFormattingCodes(String message){
-		for (Entry<String, ChatColor> entry : formattingCodeMap.entrySet()){
+	public static String parseFormattingCodes(String message)
+	{
+		for (Entry<String, ChatColor> entry : formattingCodeMap.entrySet())
 			message = message.replaceAll(entry.getKey(), entry.getValue().toString());
-		}
-		
+
 		return message;
 	}
-	
 }

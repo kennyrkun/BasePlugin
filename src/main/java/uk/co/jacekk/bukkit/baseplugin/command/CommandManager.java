@@ -15,25 +15,30 @@ import uk.co.jacekk.bukkit.baseplugin.util.ReflectionUtils;
  * 
  * @author Jacek Kuzemczak
  */
-public class CommandManager {
-	
+public class CommandManager
+{
 	private BasePlugin plugin;
 	private CommandMap commandMap;
 	
 	/**
 	 * @param plugin	The plugin that this manager is for.
 	 */
-	public CommandManager(BasePlugin plugin){
+	public CommandManager(BasePlugin plugin)
+	{
 		this.plugin = plugin;
 		
-		try{
+		try
+		{
 			this.commandMap = ReflectionUtils.getFieldValue(SimplePluginManager.class, "commandMap", CommandMap.class, plugin.getServer().getPluginManager());
-		}catch (Exception e){
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
 	
-	private boolean registerCommand(PluginCommand command){
+	private boolean registerCommand(PluginCommand command)
+	{
 		return this.commandMap.register(plugin.description.getName(), command);
 	}
 	
@@ -43,49 +48,49 @@ public class CommandManager {
 	 * @param executor	The command executor to register.
 	 * @throws CommandRegistrationException if the registration fails
 	 */
-	public void registerCommandExecutor(BaseCommandExecutor<? extends BasePlugin> executor){
+	public void registerCommandExecutor(BaseCommandExecutor<? extends BasePlugin> executor)
+	{
 		@SuppressWarnings("unchecked")
 		Class<BaseCommandExecutor<? extends BasePlugin>> cls = (Class<BaseCommandExecutor<? extends BasePlugin>>) executor.getClass();
 		
-		for (Method method : cls.getDeclaredMethods()){
+		for (Method method : cls.getDeclaredMethods())
+		{
 			CommandHandler commandInfo = method.getAnnotation(CommandHandler.class);
 			CommandTabCompletion tabInfo = method.getAnnotation(CommandTabCompletion.class);
 			
-			if (commandInfo != null){
-				if (!method.getReturnType().equals(Void.TYPE)){
+			if (commandInfo != null)
+				if (!method.getReturnType().equals(Void.TYPE))
 					throw new CommandRegistrationException("Incorrect return type for command method " + method.getName() + " in " + cls.getName());
-				}else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class})){
+				else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class}))
 					throw new CommandRegistrationException("Incorrect arguments for command method " + method.getName() + " in " + cls.getName());
-				}else{
+				else
+				{
 					PluginCommand command = new PluginCommand(plugin, executor, method, commandInfo.names(), commandInfo.description(), commandInfo.usage(), ((tabInfo == null) ? new String[0] : tabInfo.value()));
 					
-					if (!this.registerCommand(command)){
+					if (!this.registerCommand(command))
 						throw new CommandRegistrationException("Failed to register command for method " + method.getName() + " in " + cls.getName());
-					}
 				}
-			}
 		}
 		
-		for (Method method : cls.getDeclaredMethods()){
+		for (Method method : cls.getDeclaredMethods())
+		{
 			SubCommandHandler subCommandInfo = method.getAnnotation(SubCommandHandler.class);
 			CommandTabCompletion tabInfo = method.getAnnotation(CommandTabCompletion.class);
 			
-			if (subCommandInfo != null){
-				if (!method.getReturnType().equals(Void.TYPE)){
+			if (subCommandInfo != null)
+				if (!method.getReturnType().equals(Void.TYPE))
 					throw new CommandRegistrationException("Incorrect return type for command method " + method.getName() + " in " + cls.getName());
-				}else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class})){
+				else if (!Arrays.equals(method.getParameterTypes(), new Class<?>[]{CommandSender.class, String.class, String[].class}))
 					throw new CommandRegistrationException("Incorrect arguments for command method " + method.getName() + " in " + cls.getName());
-				}else{
+				else
+				{
 					PluginCommand parent = (PluginCommand) this.commandMap.getCommand(subCommandInfo.parent());
 					
-					if (parent == null){
+					if (parent == null)
 						throw new CommandRegistrationException("Attempted to register sub-command of " + subCommandInfo.parent() + " before main handler.");
-					}
-					
+
 					parent.registerSubCommandHandler(subCommandInfo.name(), new PluginSubCommand(executor, method, ((tabInfo == null) ? new String[0] : tabInfo.value())));
 				}
-			}
 		}
 	}
-	
 }

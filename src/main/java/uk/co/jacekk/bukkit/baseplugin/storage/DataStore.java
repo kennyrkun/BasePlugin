@@ -16,8 +16,8 @@ import java.util.Set;
  * 
  * @author Jacek Kuzemczak
  */
-public class DataStore {
-	
+public class DataStore
+{
 	private File storageFile;
 	
 	private HashMap<String, String> data;
@@ -27,45 +27,52 @@ public class DataStore {
 	 * @param file				The file where the list will be stored.
 	 * @param caseSensitive		If set to false all comparison will be done in lower-case.
 	 */
-	public DataStore(File file, boolean caseSensitive){
+	public DataStore(File file, boolean caseSensitive)
+	{
 		this.storageFile = file;
 		
 		this.data = new HashMap<String, String>();
 		this.caseSensitive = caseSensitive;
 		
-		if (!this.storageFile.exists()){
-			try{
+		if (!this.storageFile.exists())
+			try
+			{
 				this.storageFile.createNewFile();
-			}catch (Exception e){
+			}
+			catch (Exception e)
+			{
 				e.printStackTrace();
 			}
-		}
 	}
 	
 	/**
 	 * Loads the current lust entries from the file.
 	 */
-	public void load(){
-		try{
+	public void load()
+	{
+		try
+		{
 			DataInputStream input = new DataInputStream(new FileInputStream(this.storageFile));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 			
 			String line, key, value;
 			String info[];
 			
-			while ((line = reader.readLine()) != null){
+			while ((line = reader.readLine()) != null)
+			{
 				info = line.split(":", 2);
 				key = (this.caseSensitive) ? info[0] : info[0].toLowerCase();
 				value = info[1];
 				
-				if (!this.data.containsKey(key)){
+				if (!this.data.containsKey(key))
 					this.data.put(key, value);
-				}
 			}
 			
 			reader.close();
 			input.close();
-		}catch (Exception e){
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -73,19 +80,24 @@ public class DataStore {
 	/**
 	 * Writes the list entries to the file.
 	 */
-	public void save(){
-		try{
+	public void save()
+	{
+		try
+		{
 			FileWriter stream = new FileWriter(this.storageFile);
 			BufferedWriter out = new BufferedWriter(stream);
 			
-			for (Entry<String, String> entry : this.data.entrySet()){
+			for (Entry<String, String> entry : this.data.entrySet())
+			{
 				out.write(entry.getKey() + ":" + entry.getValue());
 				out.newLine();
 			}
 			
 			out.close();
 			stream.close();
-		}catch (Exception e){
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -96,7 +108,8 @@ public class DataStore {
 	 * @param key	The key to check for.
 	 * @return		True of the key exists false if not.
 	 */
-	public boolean contains(String key){
+	public boolean contains(String key)
+	{
 		return this.data.containsKey((this.caseSensitive) ? key : key.toLowerCase());
 	}
 	
@@ -114,7 +127,8 @@ public class DataStore {
 	 * 
 	 * @return	The keys.
 	 */
-	public Set<String> getKeys(){
+	public Set<String> getKeys()
+	{
 		return this.data.keySet();
 	}
 	
@@ -124,15 +138,14 @@ public class DataStore {
 	 * @param key	The key to get the data for,
 	 * @return		The data or an empty string if the key was not found.
 	 */
-	public String getData(String key){
-		if (!this.caseSensitive){
+	public String getData(String key)
+	{
+		if (!this.caseSensitive)
 			key = key.toLowerCase();
-		}
-		
-		if (!this.data.containsKey(key)){
+
+		if (!this.data.containsKey(key))
 			return "";
-		}
-		
+
 		return this.data.get(key);
 	}
 	
@@ -141,7 +154,8 @@ public class DataStore {
 	 * 
 	 * @return The number.
 	 */
-	public int size(){
+	public int size()
+	{
 		return this.data.size();
 	}
 	
@@ -151,7 +165,8 @@ public class DataStore {
 	 * @param key		The key (NOTE: Must not contain ':')
 	 * @param value		The value.
 	 */
-	public void put(String key, String value){
+	public void put(String key, String value)
+	{
 		this.data.put((this.caseSensitive) ? key : key.toLowerCase(), value);
 	}
 	
@@ -161,14 +176,13 @@ public class DataStore {
 	 * @param key		The key (NOTE: Must not contain ':')
 	 * @param value		The value.
 	 */
-	public void add(String key, String value){
-		if (!this.caseSensitive){
+	public void add(String key, String value)
+	{
+		if (!this.caseSensitive)
 			key = key.toLowerCase();
-		}
-		
-		if (!this.data.containsKey(key)){
+
+		if (!this.data.containsKey(key))
 			this.data.put(key, value);
-		}
 	}
 	
 	/**
@@ -176,15 +190,16 @@ public class DataStore {
 	 * 
 	 * @param key	The key for the entry to remove.
 	 */
-	public void remove(String key){
+	public void remove(String key)
+	{
 		this.data.remove((this.caseSensitive) ? key : key.toLowerCase());
 	}
 	
 	/**
 	 * Removes all entries from the list.
 	 */
-	public void removeAll(){
+	public void removeAll()
+	{
 		this.data.clear();
 	}
-	
 }

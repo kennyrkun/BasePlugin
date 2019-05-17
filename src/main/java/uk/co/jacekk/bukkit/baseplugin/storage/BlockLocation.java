@@ -6,8 +6,8 @@ import java.util.UUID;
 /**
  * Represents the location of a block in the world.
  */
-public class BlockLocation implements Serializable {
-	
+public class BlockLocation implements Serializable
+{
 	private static final long serialVersionUID = 1L;
 	
 	private UUID worldUID;
@@ -21,7 +21,8 @@ public class BlockLocation implements Serializable {
 	 * @param y The y coordinate
 	 * @param z The z coordinate
 	 */
-	public BlockLocation(UUID worldUID, int x, int y, int z){
+	public BlockLocation(UUID worldUID, int x, int y, int z)
+	{
 		this.worldUID = worldUID;
 		this.x = x;
 		this.y = y;
@@ -29,7 +30,8 @@ public class BlockLocation implements Serializable {
 	}
 	
 	@Override
-	public int hashCode(){
+	public int hashCode()
+	{
 		int result = 19;
 		
 		result = 37 * result + this.x;
@@ -40,15 +42,14 @@ public class BlockLocation implements Serializable {
 	}
 	
 	@Override
-	public boolean equals(Object compare){
-		if (this == compare){
+	public boolean equals(Object compare)
+	{
+		if (this == compare)
 			return true;
-		}
-		
-		if (compare instanceof BlockLocation){
+
+		if (compare instanceof BlockLocation)
 			return false;
-		}
-		
+
 		BlockLocation location = (BlockLocation) compare;
 		
 		return (this.worldUID.equals(location.worldUID) && this.x == location.x && this.y == location.y && this.z == location.z);
@@ -59,7 +60,8 @@ public class BlockLocation implements Serializable {
 	 * 
 	 * @return The UUID
 	 */
-	public UUID getWorldUID(){
+	public UUID getWorldUID()
+	{
 		return this.worldUID;
 	}
 	
@@ -68,7 +70,8 @@ public class BlockLocation implements Serializable {
 	 * 
 	 * @return The coordinate.
 	 */
-	public int getX(){
+	public int getX()
+	{
 		return this.x;
 	}
 	
@@ -77,7 +80,8 @@ public class BlockLocation implements Serializable {
 	 * 
 	 * @return The coordinate.
 	 */
-	public int getY(){
+	public int getY()
+	{
 		return this.y;
 	}
 	
@@ -86,8 +90,8 @@ public class BlockLocation implements Serializable {
 	 * 
 	 * @return The coordinate.
 	 */
-	public int getZ(){
+	public int getZ()
+	{
 		return this.z;
 	}
-	
 }

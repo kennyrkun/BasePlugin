@@ -8,9 +8,10 @@ import org.bukkit.permissions.Permission;
 import uk.co.jacekk.bukkit.baseplugin.BaseObject;
 import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
 
-public class PermissionManager extends BaseObject<BasePlugin> {
-	
-	public PermissionManager(BasePlugin plugin){
+public class PermissionManager extends BaseObject<BasePlugin>
+{
+	public PermissionManager(BasePlugin plugin)
+	{
 		super(plugin);
 	}
 	
@@ -19,10 +20,10 @@ public class PermissionManager extends BaseObject<BasePlugin> {
 	 * 
 	 * @param permissions	An array of {@link PluginPermission}s to register.
 	 */
-	public void registerPermissions(PluginPermission[] permissions){
-		for (PluginPermission permission : permissions){
+	public void registerPermissions(PluginPermission[] permissions)
+	{
+		for (PluginPermission permission : permissions)
 			plugin.getServer().getPluginManager().addPermission(new Permission(permission.getNode(), permission.getDescription(), permission.getDefault()));
-		}
 	}
 	
 	/**
@@ -30,20 +31,21 @@ public class PermissionManager extends BaseObject<BasePlugin> {
 	 * 
 	 * @param permissionHolder	The class holding all of the {@link PluginPermission} objects.
 	 */
-	public void registerPermissions(Class<?> permissionHolder){
+	public void registerPermissions(Class<?> permissionHolder)
+	{
 		ArrayList<PluginPermission> perms = new ArrayList<PluginPermission>();
 		
-		for (Field field : permissionHolder.getDeclaredFields()){
-			if (field.getType().equals(PluginPermission.class)){
-				try{
+		for (Field field : permissionHolder.getDeclaredFields())
+			if (field.getType().equals(PluginPermission.class))
+				try
+				{
 					perms.add((PluginPermission) field.get(null));
-				}catch (Exception e){
+				}
+				catch (Exception e)
+				{
 					e.printStackTrace();
 				}
-			}
-		}
-		
+
 		this.registerPermissions(perms.toArray(new PluginPermission[perms.size()]));
 	}
-	
 }

@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CommandHandler {
-	
+public @interface CommandHandler
+{
 	/**
 	 * @return	The names that can be used for this command.
 	 */
@@ -28,5 +28,4 @@ public @interface CommandHandler {
 	 * @return	The usage information for this command.
 	 */
 	String usage() default "";
-	
 }

@@ -16,25 +16,28 @@ import java.util.Map.Entry;
  * 
  * @author Jacek Kuzemczak
  */
-public class PairArgumentProcessor extends ArgumentProcessor {
-	
+public class PairArgumentProcessor extends ArgumentProcessor
+{
 	private LinkedHashMap<String, String> values;
 	
 	/**
 	 * @param args	The command arguments.
 	 */
-	public PairArgumentProcessor(String[] args){
+	public PairArgumentProcessor(String[] args)
+	{
 		this.args = args;
 		this.values = new LinkedHashMap<String, String>();
 		
 		this.process();
 	}
 	
-	public void process(){
+	public void process()
+	{
 		int k = 0;
 		int v = 1;
 		
-		while (k < this.args.length && v < this.args.length){
+		while (k < this.args.length && v < this.args.length)
+		{
 			this.values.put(this.args[k].toLowerCase(), this.args[v]);
 			
 			k += 2;
@@ -48,17 +51,19 @@ public class PairArgumentProcessor extends ArgumentProcessor {
 	 * @param key	The key of the entry.
 	 * @return		True if the key was found, false if not.
 	 */
-	public boolean contains(String key){
+	public boolean contains(String key)
+	{
 		return this.values.containsKey(key.toLowerCase());
 	}
-	
+
 	/**
 	 * Gets the value associated with a key.
 	 * 
 	 * @param key	The key.
 	 * @return		the value.
 	 */
-	public String get(String key){
+	public String get(String key)
+	{
 		return this.values.get(key.toLowerCase());
 	}
 	
@@ -67,8 +72,8 @@ public class PairArgumentProcessor extends ArgumentProcessor {
 	 * 
 	 * @return	The values.
 	 */
-	public Set<Entry<String, String>> getAll(){
+	public Set<Entry<String, String>> getAll()
+	{
 		return this.values.entrySet();
 	}
-	
 }

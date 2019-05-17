@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SubCommandHandler {
-	
+public @interface SubCommandHandler
+{
 	/**
 	 * @return	The name of the parent command.
 	 */
@@ -23,5 +23,4 @@ public @interface SubCommandHandler {
 	 * @return	The name of this sub-command
 	 */
 	String name();
-	
 }

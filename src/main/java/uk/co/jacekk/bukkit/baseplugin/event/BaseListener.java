@@ -11,13 +11,13 @@ import uk.co.jacekk.bukkit.baseplugin.BaseObject;
  *
  * @param <Type>	The plugin that this listener belongs to.
  */
-public abstract class BaseListener<Type> extends BaseObject<Type> implements Listener {
-	
+public abstract class BaseListener<Type> extends BaseObject<Type> implements Listener
+{
 	/**
 	 * @param plugin	The plugin that this listener belongs to.
 	 */
-	public BaseListener(Type plugin){
+	public BaseListener(Type plugin)
+	{
 		super(plugin);
 	}
-	
 }
